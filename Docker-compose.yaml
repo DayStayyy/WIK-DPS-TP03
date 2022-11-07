@@ -1,0 +1,28 @@
+# Version de l'API Docker Compose à utiliser pour lire ce fichier
+version: '3.8'
+
+# Déclaration des services
+services:
+
+  rust-docker:
+
+    # Définition du Dockerfile à build et à utiliser
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    # Configuration des ports à exposer sur le réseau
+    ports:
+      - '8080'
+
+    # Nombre de réplicas souhaités du même container 
+    deploy:
+      replicas: 4 # Ici on déploie 4 fois le container au sein du service my_app
+    
+    # Rédemarrage automatique dans tous les cas lorsqu'un container s'arrête
+    restart: always
+
+    # Définir des variables d'environnement pour le service
+    environment:
+      - PING_LISTEN_PORT=8080
+  
