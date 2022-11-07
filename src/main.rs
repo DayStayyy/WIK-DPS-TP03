@@ -35,6 +35,7 @@ fn rocket() -> _ {
     dotenv().ok();
     let port = std::env::var("PING_LISTEN_PORT");
     let config = Config {
+        address : "0.0.0.0".parse().unwrap(),
         port: port.unwrap_or("8080".to_string()).parse().unwrap(),
         ..Config::debug_default()
     };
